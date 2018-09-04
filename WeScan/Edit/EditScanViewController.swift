@@ -151,9 +151,12 @@ final class EditScanViewController: UIViewController {
             uiImage = UIImage(ciImage: filteredImage, scale: 1.0, orientation: .up)
         }
         
-        let results = ImageScannerResults(originalImage: image, scannedImage: uiImage, detectedRectangle: scaledQuad)
+        let results = ImageScannerResults()
+        results.originalImage = image
+        results.scannedImage = uiImage
+        results.detectedRectangle = scaledQuad
         let reviewViewController = ReviewViewController(results: results)
-        
+
         navigationController?.pushViewController(reviewViewController, animated: true)
     }
 

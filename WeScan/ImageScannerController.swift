@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 /// A set of methods that your delegate object must implement to interact with the image scanner interface.
-public protocol ImageScannerControllerDelegate: NSObjectProtocol {
+@objc public protocol ImageScannerControllerDelegate: NSObjectProtocol {
     
     /// Tells the delegate that the user scanned a document.
     ///
@@ -100,15 +100,20 @@ public final class ImageScannerController: UINavigationController {
 }
 
 /// Data structure containing information about a scan.
-public struct ImageScannerResults {
+@objcMembers public class ImageScannerResults : NSObject {
     
     /// The original image taken by the user.
-    public var originalImage: UIImage
+    public var originalImage: UIImage?
     
     /// The deskewed and cropped orignal image using the detected rectangle.
-    public var scannedImage: UIImage
+    public var scannedImage: UIImage?
     
     /// The detected rectangle which was used to generate the `scannedImage`.
-    public var detectedRectangle: Quadrilateral
+    public var detectedRectangle: Quadrilateral?
+    
+    public override init() {
+        super.init()
+    }
     
 }
+
